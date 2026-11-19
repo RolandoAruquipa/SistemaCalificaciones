@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#142d43">
+  <meta name="description" content="Evaluación de práctica profesional: registro, calificación y seguimiento.">
+  <title>Evaluación de práctica profesional</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script><script src="evaluation.js" defer></script><script src="docx-template.js" defer></script><script src="docx-export.js" defer></script><script src="delivery.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+  <div class="workspace">
+    <a class="skip-link" href="#mainContent">Ir al formulario</a>
+    <main id="mainContent">
+      <div class="page-heading"><div><p class="eyebrow">EVALUACIÓN DE DESEMPEÑO</p><h1>Evaluación de práctica profesional</h1><p class="muted">Completa la información, valora el desempeño y envía la evaluación al responsable.</p></div><div class="page-account"><a href="admin.html" id="accountButton" class="button">Iniciar sesi?n</a><span class="pill" id="documentStatus">Borrador</span></div></div>
+      <div class="toolbar"><span id="saveStatus" role="status">Los cambios se guardan en este navegador.</span><div><button class="button" id="newButton" type="button">Nueva evaluación</button><button class="button" id="printButton" type="button">Descargar Word</button></div></div>
+      <nav class="stepper" aria-label="Secciones de la evaluación" id="stepper">
+        <button type="button" data-step="0" aria-current="step" aria-label="Paso 1: Identificación"><span>01</span><b class="step-label">Identificación</b><b class="step-short" aria-hidden="true">Datos</b></button>
+        <button type="button" data-step="1" aria-label="Paso 2: Características personales"><span>02</span><b class="step-label">Características</b><b class="step-short" aria-hidden="true">Personal</b></button>
+        <button type="button" data-step="2" aria-label="Paso 3: Actividades y proyecto"><span>03</span><b class="step-label">Actividades</b><b class="step-short" aria-hidden="true">Proyecto</b></button>
+        <button type="button" data-step="3" aria-label="Paso 4: Comentarios y cierre"><span>04</span><b class="step-label">Comentarios</b><b class="step-short" aria-hidden="true">Cierre</b></button>
+        <button type="button" data-step="4" aria-label="Paso 5: Revisar y generar"><span>05</span><b class="step-label">Revisar y generar</b><b class="step-short" aria-hidden="true">Revisión</b></button>
+      </nav>
+      <p class="step-caption" id="stepCaption" role="status">Paso 1 de 5 · Identificación</p>
+      <form id="evaluationForm" novalidate>
+        <div class="content-grid"><div class="form-column">
+          <section class="card" id="identificacion"><div class="section-heading"><span class="section-number">01</span><div><h2>Datos de la práctica</h2><p>Información del practicante y de la institución receptora.</p></div></div><p class="field-note">Los campos con <span>*</span> son obligatorios.</p>
+            <div class="fields">
+              <label class="wide">Nombre completo del practicante <span>*</span><input name="student" autocomplete="name" required maxlength="160" placeholder="Nombres y apellidos"></label>
+              <label>Empresa o institución <span>*</span><input name="company" required maxlength="180" placeholder="Nombre de la institución"></label>
+              <label>Teléfono de la institución<input name="companyPhone" type="tel" maxlength="40" placeholder="Ej. +591 70000000"></label>
+              <label class="wide">Unidad o dirección<input name="department" maxlength="200" placeholder="Área donde se realiza la práctica"></label>
+              <label>Nombre del supervisor <span>*</span><input name="supervisor" required maxlength="160" placeholder="Nombres y apellidos"></label>
+              <label>Celular del supervisor<input name="supervisorPhone" type="tel" maxlength="40" placeholder="Número de contacto"></label>
+              <label>Fecha de inicio <span>*</span><input name="startDate" type="date" required></label>
+              <label>Fecha de finalización <span>*</span><input name="endDate" type="date" required></label>
+              <label>Horario de ingreso <span>*</span><input name="startTime" type="time" required></label>
+              <label>Horario de salida <span>*</span><input name="endTime" type="time" required></label>
+            </div>
+          </section>
+          <section class="guide" id="instrucciones"><div><h3>Una calificación por cada criterio</h3><p>Ingresa notas de 1 a 100. Completa los ocho criterios de cada sección para calcular el resultado.</p></div><div class="scale"><span><i></i>1–25 <b>Insuficiente</b></span><span><i></i>26–50 <b>Suficiente</b></span><span><i></i>51–75 <b>Bueno</b></span><span><i></i>76–100 <b>Excelente</b></span></div><small>Escala de los criterios del documento original. El resultado final utiliza la escala indicada en el resumen.</small></section>
+          <section class="card"><div class="section-heading"><span class="section-number">02</span><div><h2>Características personales</h2><p>Actitudes y habilidades durante la práctica profesional.</p></div><span class="weight">40 %</span></div><div id="personalCriteria"></div><div class="section-total"><span>Promedio de características personales</span><strong id="personalAverage">— / 100</strong></div></section>
+          <section class="card"><div class="section-heading"><span class="section-number">03</span><div><h2>Actividades y proyecto</h2><p>Describe y califica las ocho actividades asignadas por el supervisor.</p></div><span class="weight">60 %</span></div><div id="activityCriteria"></div><div class="section-total"><span>Promedio de actividades y proyecto</span><strong id="activityAverage">— / 100</strong></div></section>
+          <section class="card"><div class="section-heading"><span class="section-number">04</span><div><h2>Comentarios y cierre</h2><p>Observaciones, recomendaciones y decisión académica.</p></div></div><div class="fields"><label class="wide">Comentarios y recomendaciones<textarea name="comments" rows="4" maxlength="6000" placeholder="Fortalezas, oportunidades de mejora y recomendaciones…"></textarea></label><label>Jefe inmediato superior<input name="manager" maxlength="160" placeholder="Nombre completo"></label><label>Docente de la asignatura<input name="teacher" maxlength="160" placeholder="Nombre completo"></label><label class="wide">Decisión adoptada por el docente<select name="decision"><option value="">Pendiente de revisión docente</option><option value="aprobado">Aprobado</option><option value="reprobado">Reprobado</option></select><small>La decisión docente se registra por separado del resultado numérico.</small></label></div><div class="signatures"><div>Firma del supervisor<br><small>Nombre completo y sello</small></div><div>Firma del jefe inmediato superior</div><div>Firma del docente</div></div></section>
+          <section class="card" id="reviewSection" hidden><div class="section-heading"><span class="section-number">05</span><div><h2>Revisar y generar documento</h2><p>Confirma los datos antes de descargar la evaluación en Word.</p></div></div><div class="review-body"><div class="template-notice"><strong>Documento final</strong><p>Se usa el formato del Word original con los datos que completaste. Luego puedes imprimirlo y firmarlo.</p></div><dl id="reviewData" class="review-data"></dl><p class="muted">Puedes volver a cualquier sección para corregir los datos. Puedes descargar tu copia en Word. Para que el responsable reciba tus respuestas, pulsa «Enviar evaluación al responsable».</p></div></section>
+          <div class="wizard-actions"><button type="button" id="previousStep" class="button">← Anterior</button><span id="stepCount">1 / 5</span><button type="button" id="nextStep" class="button primary">Siguiente →</button></div>
+        </div>
+        <aside class="summary-column" hidden><section class="summary card"><h2>Resumen de calificaciones</h2><div class="final-score"><span>Nota final:</span> <strong id="finalScore">—</strong> <span>/ 100</span></div><p class="result" id="resultLabel">Evaluación en progreso</p><p class="completion" id="completion">0 de 16 criterios calificados</p><progress id="progress" max="16" value="0" aria-label="Criterios completados"></progress><div class="breakdown"><div><span>Características personales <small>40 % de la nota</small></span><strong id="personalWeighted">—</strong></div><div><span>Actividades y proyecto <small>60 % de la nota</small></span><strong id="activityWeighted">—</strong></div></div><div class="final-scale"><span>Hasta 60 <b>Insuficiente</b></span><span>Más de 60 hasta 75 <b>Suficiente</b></span><span>Más de 75 hasta 90 <b>Bueno</b></span><span>Más de 90 <b>Excelente</b></span></div><button type="submit" class="button full">Finalizar y generar Word</button><button type="button" id="saveButton" class="button full">Guardar borrador</button><button type="button" id="cloudButton" class="button subtle full">Guardar en mi cuenta</button><button type="button" id="sendButton" class="button primary full" hidden>Enviar evaluación al responsable</button><p id="deliveryStatus" class="delivery-status" role="status"></p><small class="summary-note">Nota final = promedio personal × 0,40 + promedio de actividades × 0,60.</small></section></aside></div>
+      </form>
+      <footer>Formulario de evaluación de práctica profesional</footer>
+    </main>
+  </div>
+  <dialog id="accountDialog"><form id="loginForm"><div class="dialog-heading"><h2>Conectar tu cuenta</h2><button class="button" id="closeDialog" type="button" aria-label="Cerrar">×</button></div><p class="muted" id="authDescription">Configura Supabase en config.js para activar la sincronización.</p><label>Correo electrónico<input id="email" type="email" autocomplete="username" required></label><label>Contraseña<input id="password" type="password" autocomplete="current-password" required minlength="6"></label><p id="authStatus" role="status"></p><button type="submit" class="button primary full" id="loginButton">Iniciar sesión</button><button type="button" class="button full" id="logoutButton" hidden>Cerrar sesión</button></form></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+</body></html>
